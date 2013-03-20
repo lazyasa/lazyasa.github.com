@@ -4,7 +4,7 @@
   <title><![CDATA[Asa's lab]]></title>
   <link href="http://lazyasa.github.com/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2013-03-20T15:47:01+08:00</updated>
+  <updated>2013-03-20T15:56:14+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -14,11 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Fire.app 編譯記錄]]></title>
+    <title type="html"><![CDATA[Fire.app 編譯]]></title>
     <link href="http://lazyasa.github.com/blog/2013/03/20/title/"/>
     <updated>2013-03-20T15:38:00+08:00</updated>
     <id>http://lazyasa.github.com/blog/2013/03/20/title</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>test</p>
 ]]></content>
   </entry>
   
