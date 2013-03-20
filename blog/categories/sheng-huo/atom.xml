@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Fire.app | Asa's lab]]></title>
-  <link href="http://lazyasa.github.com/blog/categories/fire-dot-app/atom.xml" rel="self"/>
+  <title><![CDATA[Category: 生活 | Asa's lab]]></title>
+  <link href="http://lazyasa.github.com/blog/categories/sheng-huo/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2013-03-20T15:58:20+08:00</updated>
+  <updated>2013-03-20T16:04:54+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -14,11 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Fire.app 編譯]]></title>
+    <title type="html"><![CDATA[hello，Octopress]]></title>
     <link href="http://lazyasa.github.com/blog/2013/03/20/title/"/>
     <updated>2013-03-20T15:38:00+08:00</updated>
     <id>http://lazyasa.github.com/blog/2013/03/20/title</id>
-    <content type="html"><![CDATA[<p>test</p>
+    <content type="html"><![CDATA[<p>換到Octopress，感覺簡潔有力。</p>
 ]]></content>
   </entry>
   
