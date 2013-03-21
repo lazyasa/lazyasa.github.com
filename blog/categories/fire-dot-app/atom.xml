@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Fire.app | Asa's lab]]></title>
   <link href="http://lazyasa.github.com/blog/categories/fire-dot-app/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2013-03-21T15:51:59+08:00</updated>
+  <updated>2013-03-21T15:53:10+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -21,34 +21,33 @@
     <content type="html"><![CDATA[<p><img src="https://github.com/handlino/FireApp/raw/master/lib/images/icon/256.png" alt="Alt text" />   <br/>
 最近看到大家大推Fire.app, <br/>
 於是就嘗試自己編譯一個來玩玩看 <br/>
-步驟為下:</p>
+步驟為下: <br/>
+```
+$ rvm install 1.9.2 // tell rvm to install ruby</p>
 
-<pre><code>$ rvm install 1.9.2 // tell rvm to install ruby 
+<p>$ rvm use 1.9.2 // tell rvm use ruby 1.9.2 ver.</p>
 
-$ rvm use 1.9.2 // tell rvm use ruby 1.9.2 ver. 
+<p>$ rvm install jruby // install jruby</p>
 
-$ rvm install jruby // install jruby 
+<p>$ rvm use jruby //jruby change to default</p>
 
-$ rvm use jruby //jruby change to default 
+<p>$ jruby -S gem install rawr // get rawr gem for jruby
+// clone latest compass source code from github</p>
 
-$ jruby -S gem install rawr // get rawr gem for jruby 
-// clone latest compass source code from github 
+<p>$ git clone git://github.com/handlino/FireApp.git</p>
 
-$ git clone git://github.com/handlino/FireApp.git
+<p>$ cd Fireapp</p>
 
-$ cd Fireapp 
-
-$ bin/build-all.sh
-</code></pre>
-
-<p>另外，在lib/ruby/common下有兩個資料夾      <br/>
--tka-rack-coffee  <br/>
--tka-serve<br/>
-如果是空的，記得再下兩個指令更新他
+<p>$ bin/build-all.sh
 <code>
+另外，在lib/ruby/common下有兩個資料夾        
+-tka-rack-coffee    
+-tka-serve  
+如果是空的，記得再下兩個指令更新他
+</code>
 git submodule init
 git submodule updata
-</code>
+```
 然後編譯  <br/>
 完成就可以開始開心使用Fire.app啦!</p>
 

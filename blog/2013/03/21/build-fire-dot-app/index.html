@@ -9,7 +9,23 @@
   <meta name="author" content="Asa">
 
   
-  <meta name="description" content="最近看到大家大推Fire.app, 於是就嘗試自己編譯一個來玩玩看 步驟為下: $ rvm install 1.9.2 // tell rvm to install ruby $ rvm use 1.9.2 // tell rvm use ruby 1.9.2 ver. $ rvm &hellip;">
+  <meta name="description" content="最近看到大家大推Fire.app, 於是就嘗試自己編譯一個來玩玩看 步驟為下: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+$ rvm install 1.9.2 // tell rvm to install ruby $ rvm use 1.9.2 // &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,23 +124,39 @@
 於是就嘗試自己編譯一個來玩玩看 <br/>
 步驟為下:</p>
 
-<pre><code>$ rvm install 1.9.2 // tell rvm to install ruby 
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rvm install 1.9.2 // tell rvm to install ruby 
+</span><span class='line'>  
+</span><span class='line'>$ rvm use 1.9.2 // tell rvm use ruby 1.9.2 ver. 
+</span><span class='line'>
+</span><span class='line'>$ rvm install jruby // install jruby 
+</span><span class='line'>
+</span><span class='line'>$ rvm use jruby //jruby change to default 
+</span><span class='line'>
+</span><span class='line'>$ jruby -S gem install rawr // get rawr gem for jruby 
+</span><span class='line'>// clone latest compass source code from github 
+</span><span class='line'>
+</span><span class='line'>$ git clone git://github.com/handlino/FireApp.git
+</span><span class='line'>
+</span><span class='line'>$ cd Fireapp 
+</span><span class='line'>
+</span><span class='line'>$ bin/build-all.sh</span></code></pre></td></tr></table></div></figure>
 
-$ rvm use 1.9.2 // tell rvm use ruby 1.9.2 ver. 
-
-$ rvm install jruby // install jruby 
-
-$ rvm use jruby //jruby change to default 
-
-$ jruby -S gem install rawr // get rawr gem for jruby 
-// clone latest compass source code from github 
-
-$ git clone git://github.com/handlino/FireApp.git
-
-$ cd Fireapp 
-
-$ bin/build-all.sh
-</code></pre>
 
 <p>另外，在lib/ruby/common下有兩個資料夾      <br/>
 -tka-rack-coffee  <br/>
