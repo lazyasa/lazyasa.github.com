@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Fire.app | Asa's lab]]></title>
   <link href="http://lazyasa.github.com/blog/categories/fire-dot-app/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2013-03-21T14:44:14+08:00</updated>
+  <updated>2013-03-21T14:44:33+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -38,7 +38,7 @@ $ git clone git://github.com/handlino/FireApp.git
 $ cd CompassApp $ bin/build-all.sh
 </code></pre>
 
-<p>然後完成就可以開始啦!</p>
+<p>然後完成就可以開始使用Fire.app啦!</p>
 ]]></content>
   </entry>
   
