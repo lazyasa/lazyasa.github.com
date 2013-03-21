@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Fire.app | Asa's lab]]></title>
   <link href="http://lazyasa.github.com/blog/categories/fire-dot-app/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2013-03-21T14:47:02+08:00</updated>
+  <updated>2013-03-21T15:13:49+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -36,10 +36,22 @@ $ jruby -S gem install rawr // get rawr gem for jruby
 
 $ git clone git://github.com/handlino/FireApp.git
 
-$ cd CompassApp $ bin/build-all.sh
+$ cd Fireapp 
+
+$ bin/build-all.sh
 </code></pre>
 
-<p>然後完成就可以開始使用Fire.app啦!</p>
+<p>另外，在lib/ruby/common下有兩個資料夾      <br/>
+-tka-rack-coffee  <br/>
+-tka-serve<br/>
+如果是空的，記得再下兩個指令更新他</p>
+
+<pre><code>git submodule init
+git submodule updata
+</code></pre>
+
+<p>然後再編譯他<br/>
+完成就可以開始開心使用Fire.app啦!</p>
 ]]></content>
   </entry>
   
