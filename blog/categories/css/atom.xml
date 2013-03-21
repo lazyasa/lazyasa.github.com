@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CSS | Asa's lab]]></title>
   <link href="http://lazyasa.github.com/blog/categories/css/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2013-03-21T15:23:53+08:00</updated>
+  <updated>2013-03-21T15:51:59+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -44,13 +44,12 @@ $ bin/build-all.sh
 <p>另外，在lib/ruby/common下有兩個資料夾      <br/>
 -tka-rack-coffee  <br/>
 -tka-serve<br/>
-如果是空的，記得再下兩個指令更新他</p>
-
-<pre><code>git submodule init
+如果是空的，記得再下兩個指令更新他
+<code>
+git submodule init
 git submodule updata
-</code></pre>
-
-<p>然後編譯  <br/>
+</code>
+然後編譯  <br/>
 完成就可以開始開心使用Fire.app啦!</p>
 
 <p>官方github  <br/>
