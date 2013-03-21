@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Asa's lab]]></title>
-  <link href="http://lazyasa.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: CSS | Asa's lab]]></title>
+  <link href="http://lazyasa.github.com/blog/categories/css/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
   <updated>2013-03-21T14:44:14+08:00</updated>
   <id>http://lazyasa.github.com/</id>
@@ -39,15 +39,6 @@ $ cd CompassApp $ bin/build-all.sh
 </code></pre>
 
 <p>然後完成就可以開始啦!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[hello，Octopress]]></title>
-    <link href="http://lazyasa.github.com/blog/2013/03/20/title/"/>
-    <updated>2013-03-20T15:38:00+08:00</updated>
-    <id>http://lazyasa.github.com/blog/2013/03/20/title</id>
-    <content type="html"><![CDATA[<p>換到Octopress，感覺簡潔有力。</p>
 ]]></content>
   </entry>
   
