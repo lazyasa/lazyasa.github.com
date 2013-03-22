@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CSS | Asa's lab]]></title>
   <link href="http://lazyasa.github.com/blog/categories/css/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2013-03-22T13:07:33+08:00</updated>
+  <updated>2013-03-22T13:08:43+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -42,8 +42,8 @@ $ bin/build-all.sh
 </code></pre>
 
 <p>另外，在lib/ruby/common下有兩個資料夾      <br/>
-- tka-rack-coffee <br/>
-- tka-serve</p>
+* tka-rack-coffee <br/>
+* tka-serve</p>
 
 <p>如果是空的，記得再下兩個指令更新他</p>
 
