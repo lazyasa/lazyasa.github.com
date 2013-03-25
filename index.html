@@ -9,8 +9,7 @@
   <meta name="author" content="Asa">
 
   
-  <meta name="description" content="看到很多大大用Octopress來寫Blog 覺得蠻酷的，於是也來玩玩看
-在這裡紀錄一下怎麼安裝以免我之後忘記 先到github開一個repo 名稱是username.github.com git://github.com/imathis/octopress.git myblog
+  <meta name="description" content="看到很多大大用Octopress來寫Blog 覺得蠻酷的，於是也來玩玩看 在這裡紀錄一下怎麼安裝以免我之後忘記 先到github開一個repo 名稱是username.github.com git://github.com/imathis/octopress.git myblog
 cd &hellip;">
   
 
@@ -109,7 +108,7 @@ cd &hellip;">
 
 
   <div class="entry-content"><p>看到很多大大用Octopress來寫Blog  <br/>
-覺得蠻酷的，於是也來玩玩看
+覺得蠻酷的，於是也來玩玩看   <br/>
 在這裡紀錄一下怎麼安裝以免我之後忘記    <br/>
 先到github開一個repo <br/>
 名稱是username.github.com</p>
@@ -128,13 +127,15 @@ rvm use ruby 1.9.3
 
 <p>然後進入myblog目錄下指令</p>
 
-<pre><code>gem install bundler
+<pre><code>gem update --system
+gem install bundler
 bundle install
 rake install
 rake setup_github_pages
 git@github.com:your_username/your_username.github.com
 git add .
 git commit -m 'first commit'
+git push origin source
 rake generate
 rake deploy
 </code></pre>
@@ -145,6 +146,15 @@ rake deploy
 </code></pre>
 
 <p>發篇新文章吧!</p>
+
+<p>發現有大大寫的更好，大家也可以看看
+http://wwssllabcd.github.com/blog/2012/08/01/how-to-install-octopress-on-window/</p>
+
+<p>Markdown語法可以參考<br/>
+http://markdown.tw/</p>
+
+<p>Markdown的軟體我是用Markdown Pro<br/>
+http://www.markdownpro.com/</p>
 </div>
   
   
