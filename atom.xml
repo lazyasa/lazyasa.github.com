@@ -4,7 +4,7 @@
   <title><![CDATA[Asa's lab]]></title>
   <link href="http://lazyasa.github.com/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2013-03-22T13:12:31+08:00</updated>
+  <updated>2013-03-25T23:08:16+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[安裝Octopress]]></title>
+    <link href="http://lazyasa.github.com/blog/2013/03/25/an-zhuang-octpress/"/>
+    <updated>2013-03-25T22:31:00+08:00</updated>
+    <id>http://lazyasa.github.com/blog/2013/03/25/an-zhuang-octpress</id>
+    <content type="html"><![CDATA[<p>看到很多大大用Octopress來寫Blog，
+覺得蠻酷的，於是也來玩玩看
+這裡紀錄一下怎麼安裝以免我之後忘記
+先到github開一個repo <br/>
+名稱是username.github.com</p>
+
+<pre><code>git://github.com/imathis/octopress.git myblog
+cd myblog/
+</code></pre>
+
+<p>記得去修改設定檔_config.yml<br/>
+因為新版本需要ruby 1.9.3
+所以我又安裝了1.9.3</p>
+
+<pre><code>rvm install ruby-1.9.3-p374
+rvm use ruby 1.9.3
+</code></pre>
+
+<p>然後進入myblog目錄下指令</p>
+
+<pre><code>gem install bundler
+bundle install
+rake install
+rake setup_github_pages
+git@github.com:your_username/your_username.github.com
+git add .
+git commit -m 'first commit'
+rake generate
+rake deploy
+</code></pre>
+
+<p>這樣你就可以在你的網址看到你的blog啦</p>
+
+<pre><code>rake new_post["Title"]
+</code></pre>
+
+<p>發篇新文章吧!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Build Fire.app]]></title>
