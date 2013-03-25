@@ -4,7 +4,7 @@
   <title><![CDATA[Asa's lab]]></title>
   <link href="http://lazyasa.github.com/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2013-03-25T23:21:11+08:00</updated>
+  <updated>2013-03-25T23:25:31+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -22,7 +22,8 @@
 覺得蠻酷的，於是也來玩玩看   <br/>
 在這裡紀錄一下怎麼安裝以免我之後忘記    <br/>
 先到github開一個repo <br/>
-名稱是username.github.com</p>
+名稱是username.github.com      <br/>
+然後從git下載檔案到自己電腦裡</p>
 
 <pre><code>git://github.com/imathis/octopress.git myblog
 cd myblog/
