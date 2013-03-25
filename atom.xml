@@ -4,7 +4,7 @@
   <title><![CDATA[Asa's lab]]></title>
   <link href="http://lazyasa.github.com/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2013-03-25T23:25:31+08:00</updated>
+  <updated>2013-03-25T23:26:17+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -59,7 +59,7 @@ rake deploy
 
 <p>發篇新文章吧!</p>
 
-<p>發現有大大寫的更好，大家也可以看看
+<p>發現有大大寫的更好，大家也可以看看   <br/>
 <a href="http://wwssllabcd.github.com/blog/2012/08/01/how-to-install-octopress-on-window/">http://wwssllabcd.github.com/blog/2012/08/01/how-to-install-octopress-on-window/</a></p>
 
 <p>Markdown語法可以參考<br/>
