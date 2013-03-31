@@ -1,7 +1,9 @@
 ---
 layout: post
-title: "Fire.app 編譯記錄"
+title: "hello，Octopress"
 date: 2013-03-20 15:38
 comments: true
-categories: Fire.app
+categories: 生活
 ---
+
+換到Octopress，感覺簡潔有力。
