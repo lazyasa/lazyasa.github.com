@@ -4,7 +4,7 @@
   <title><![CDATA[Asa's lab]]></title>
   <link href="http://lazyasa.github.com/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2013-03-25T23:26:17+08:00</updated>
+  <updated>2014-07-09T12:23:48+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Puppet Master&amp;Agent CA認證筆記]]></title>
+    <link href="http://lazyasa.github.com/blog/2014/07/09/puppet-master-and-agent-ca/"/>
+    <updated>2014-07-09T12:20:00+08:00</updated>
+    <id>http://lazyasa.github.com/blog/2014/07/09/puppet-master-and-agent-ca</id>
+    <content type="html"><![CDATA[<h4>Agent</h4>
+
+<p>要求ca</p>
+
+<pre><code># puppet agent --server myserver.example.com --waitforcert 60 --test
+</code></pre>
+
+<h4>Master</h4>
+
+<p>查詢ca</p>
+
+<pre><code># puppet cert --list ---all
+</code></pre>
+
+<p>簽署ca</p>
+
+<pre><code># puppet cert --sign certnmame
+or
+# puppet cert --sign --all (安全性不佳)
+</code></pre>
+
+<p>刪除ca</p>
+
+<pre><code>#puppet cert --clean myserver.example.com
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[安裝Octopress]]></title>
