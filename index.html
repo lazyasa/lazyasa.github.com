@@ -168,9 +168,7 @@
 [agent]  <br/>
 runinterval=3600 #3600秒</p></blockquote>
 
-<h1>site.pp 基本設定</h1>
-
-<hr />
+<h2>site.pp 基本設定</h2>
 
 <p>基本安裝  <br/>
 <code>vim /etc/puppet/manifests/site.pp</code></p>
@@ -202,20 +200,29 @@ node  'web.example.com'
 'web3.example.com'  
 {   
     # Puppet code goes here 
-}   正規化寫法，機器會自己去撈全部的機器例如 web1 到 web20
-node /^web\d+\.example\.com$/   {       # Puppet code goes here }
+}   
+</code></pre>
+
+<p>正規化寫法，機器會自己去撈全部的機器例如 web1 到 web20</p>
+
+<pre><code>node /^web\d+\.example\.com$/   {       # Puppet code goes here }
 </code></pre>
 
 <p>也可以使用繼承</p>
 
-<pre><code>node basenode {        include  sudo
-   include  mailx   }
-node    'web.example.com'       inherits basenode {              include apache }
+<pre><code>node basenode {
+   include  sudo
+   include  mailx
+}   
+
+node
+'web.example.com'
+    inherits basenode {
+         include apache
+}
 </code></pre>
 
-<h1>Class寫法</h1>
-
-<hr />
+<h2>Class寫法</h2>
 
 <h4>Class inheritance</h4>
 
