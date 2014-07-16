@@ -9,7 +9,7 @@
   <meta name="author" content="Asa">
 
   
-  <meta name="description" content="Puppet 基本設定 設定檔位置 /etc/puppet/puppet.conf Master site.pp指定安裝檔案位置 /etc/puppet/manifests/site.pp 安裝Master 1.安裝套件 # yum install puppet puppet-server &hellip;">
+  <meta name="description" content="設定檔位置 /etc/puppet/puppet.conf Master site.pp指定安裝檔案位置 /etc/puppet/manifests/site.pp 安裝Master 1.安裝套件 # yum install puppet puppet-server facter -y # &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,7 +83,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/07/16/puppet-basic-setting/">Puppet Basic Setting</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/07/16/puppet-basic-setting/">Puppet 基本設定</a></h1>
     
     
       <p class="meta">
@@ -106,11 +106,7 @@
   </header>
 
 
-  <div class="entry-content"><h1>Puppet 基本設定</h1>
-
-<hr />
-
-<h4>設定檔位置</h4>
+  <div class="entry-content"><h4>設定檔位置</h4>
 
 <pre><code>/etc/puppet/puppet.conf
 </code></pre>
@@ -179,17 +175,17 @@ runinterval=3600 #3600秒</p></blockquote>
 <p>基本安裝  <br/>
 <code>vim /etc/puppet/manifests/site.pp</code></p>
 
-<pre><code>node default
- {      include defaultclassname     }
+<pre><code>node default    
+ {          include defaultclassname         }
 </code></pre>
 
 <p>針對不同機器指定要安裝的module</p>
 
-<pre><code>node  'puppet.example.com'  {       # Puppet code wll go here   }
-    node  'web.example.com' {       # Puppet code will go here  }
+<pre><code>node  'puppet.example.com'      {           # Puppet code wll go here       }
+        node  'web.example.com'     {           # Puppet code will go here      }
 </code></pre>
 
-<p>或是一次設定大量機器  node    &#8216;web1.example.com&#8217;,     &#8216;web2.example.com&#8217;,     &#8216;web3.example.com&#8217;  {       # Puppet code goes here }
+<p>或是一次設定大量機器  node        &#8216;web1.example.com&#8217;,     &#8216;web2.example.com&#8217;,     &#8216;web3.example.co    m&#8217;      {           # Puppet code goes here     } <br/>
 正規化寫法，機器會自己去撈全部的機器例如 web1 到 web20</p>
 
 <pre><code>node /^web\d+\.example\.com$/   {       # Puppet code goes here }
@@ -542,7 +538,7 @@ git submodule updata
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/07/16/puppet-basic-setting/">Puppet basic setting</a>
+        <a href="/blog/2014/07/16/puppet-basic-setting/">Puppet 基本設定</a>
       </li>
     
       <li class="post">
