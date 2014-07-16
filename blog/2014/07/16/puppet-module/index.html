@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Asa Hsu</title>
+  <title>Puppet module - Asa Hsu</title>
   <meta name="author" content="Asa">
 
   
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lazyasa.github.com">
+  <link rel="canonical" href="http://lazyasa.github.com/blog/2014/07/16/puppet-module">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Asa Hsu" type="application/atom+xml">
@@ -76,15 +76,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/07/16/puppet-module/">Puppet Module</a></h1>
+      <h1 class="entry-title">Puppet Module</h1>
     
     
       <p class="meta">
@@ -107,7 +104,7 @@
   </header>
 
 
-  <div class="entry-content"><h4>Module路徑位置</h4>
+<div class="entry-content"><h4>Module路徑位置</h4>
 
 <pre><code>/etc/puppet/modules
 </code></pre>
@@ -219,235 +216,16 @@ vendor            =&gt; # A read-only parameter set by the...
 </ol>
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/16/puppet-basic-setting/">Puppet 基本設定</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Asa</span></span>
 
-<time datetime="2014-07-16T10:56:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>設定檔位置</h4>
-
-<pre><code>/etc/puppet/puppet.conf
-</code></pre>
-
-<h4>Master site.pp指定安裝檔案位置</h4>
-
-<pre><code>/etc/puppet/manifests/site.pp
-</code></pre>
-
-<h4>安裝Master</h4>
-
-<p>1.安裝套件</p>
-
-<pre><code># yum install puppet puppet-server facter -y #系統會自己安裝一些ruby相關套件
-</code></pre>
-
-<p>2.設定puppet.conf</p>
-
-<pre><code># cp /etc/puppet/puppet.conf{,.bak} ＃備份config檔案
-# vim /etc/puppet/puppet.conf
-</code></pre>
-
-<p>3.建立site.pp</p>
-
-<pre><code># touch /etc/puppet/manifests/site.pp
-</code></pre>
-
-<p>4.啟動puppet</p>
-
-<pre><code># /etc/init.d/puppetmaster start
-# chkconfig puppetmaster on #設定開機啟動
-</code></pre>
-
-<h4>安裝Agent</h4>
-
-<p>1.安裝套件</p>
-
-<pre><code># yum install puppet facter     
-</code></pre>
-
-<p>2.設定puppet.conf</p>
-
-<pre><code># cp /etc/puppet/puppet.conf{,.bak} ＃備份config檔案
-# vim /etc/puppet/puppet.conf
-</code></pre>
-
-<p>在[agent]加上server</p>
-
-<pre><code>server = myserver.example.com
-</code></pre>
-
-<p>3.請求CA認證</p>
-
-<p><a href="">參考網址</a></p>
-
-<p>4.Server端認證</p>
-
-<blockquote><p>如果需要常駐在設定檔設定 <br/>
-[agent]  <br/>
-runinterval=3600 #3600秒</p></blockquote>
-
-<h2>site.pp 基本設定</h2>
-
-<p>基本安裝  <br/>
-<code>vim /etc/puppet/manifests/site.pp</code></p>
-
-<pre><code>    node default    
- {  
-    include defaultclassname    
- }
-</code></pre>
-
-<p>針對不同機器指定要安裝的module</p>
-
-<pre><code>node  'puppet.example.com'  
-{   
-    # Puppet code wll go here   
-}
-
-
-node  'web.example.com' 
-{   
-    # Puppet code will go here  
-}
-</code></pre>
-
-<p>或是一次設定大量機器  node</p>
-
-<pre><code>'web1.example.com', 
-'web2.example.com', 
-'web3.example.com'  
-{   
-    # Puppet code goes here 
-}   
-</code></pre>
-
-<p>正規化寫法，機器會自己去撈全部的機器例如 web1 到 web20</p>
-
-<pre><code>node /^web\d+\.example\.com$/   {       # Puppet code goes here }
-</code></pre>
-
-<p>也可以使用繼承</p>
-
-<pre><code>node basenode {
-   include  sudo
-   include  mailx
-}   
-
-node
-'web.example.com'
-    inherits basenode {
-         include apache
-}
-</code></pre>
-
-<h2>Class寫法</h2>
-
-<h4>Class inheritance</h4>
-
-<pre><code>class ssh::params {
-  case $::osfamily {
-  'Debian': { $sshd_package  = 'ssh' }
-  'RedHat': { $sshd_package  = 'openssh-server' }
-  default:  {fail("Login class does not work on osfamily: ${::osfamily}")}
-  }
-}
-
-class ssh inherits ssh::params {
-  package { $::ssh::params::sshd_package:
-    ensure =&gt; installed,
-  }
-}
-
-include ssh 
-</code></pre>
-
-<h4>Class inheritance另一種寫法</h4>
-
-<pre><code>class ssh {
-  include ssh::params
-  package { $::ssh::params::sshd_package:
-    ensure =&gt; installed,
-  }
-}
-include ssh
-</code></pre>
-
-<h4>當有不同作業系統時，建議拆出一個class</h4>
-
-<pre><code>class ssh::params {
-    case $::osfamily{
-        Solaris: {
-            $ssh_package_name = 'openssh';
-        }
-        Debain: {
-            $ssh_package_name = 'openssh-server';
-        }
-        RedHat: {
-            $ssh_package_name = 'openssh-server';
-        }
-        default: {
-            fail("Moudle propuppet-ssh dose not support osfamily ${::osfamily}")
-        }
-    }
-}
-</code></pre>
-
-<p>in SSH Package class</p>
-
-<pre><code>class ssh::package {
-    include ssh::params
-    package { "ssh":
-        ensure =&gt; present,
-        name =&gt; $ssh::params::ssh_package_name,
-    }
-}   
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/09/puppet-master-and-agent-ca/">Puppet Master&amp;Agent CA認證筆記</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -459,247 +237,40 @@ include ssh
   
 
 
-<time datetime="2014-07-09T12:20:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>Agent</h4>
-
-<p>要求ca</p>
-
-<pre><code># puppet agent --server myserver.example.com --waitforcert 60 --test
-</code></pre>
-
-<h4>Master</h4>
-
-<p>查詢ca</p>
-
-<pre><code># puppet cert --list ---all
-</code></pre>
-
-<p>簽署ca</p>
-
-<pre><code># puppet cert --sign certnmame
-or
-# puppet cert --sign --all (安全性不佳)
-</code></pre>
-
-<p>刪除ca</p>
-
-<pre><code>#puppet cert --clean myserver.example.com
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2014-07-16T11:06:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2014</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/25/an-zhuang-octpress/">安裝Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/puppet/'>puppet</a>
+  
+</span>
 
 
-<time datetime="2013-03-25T22:31:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2013</time>
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>看到很多大大用Octopress來寫Blog  <br/>
-覺得蠻酷的，於是也來玩玩看   <br/>
-在這裡紀錄一下怎麼安裝以免我之後忘記    <br/>
-先到github開一個repo <br/>
-名稱是username.github.com      <br/>
-然後從git下載檔案到自己電腦裡</p>
-
-<pre><code>git://github.com/imathis/octopress.git myblog
-cd myblog/
-</code></pre>
-
-<p>記得去修改設定檔_config.yml<br/>
-因為新版本需要ruby 1.9.3
-所以我又安裝了1.9.3</p>
-
-<pre><code>rvm install ruby-1.9.3-p374
-rvm use ruby 1.9.3
-</code></pre>
-
-<p>然後進入myblog目錄下指令</p>
-
-<pre><code>gem update --system
-gem install bundler
-bundle install
-rake install
-rake setup_github_pages
-git@github.com:your_username/your_username.github.com
-git add .
-git commit -m 'first commit'
-git push origin source
-rake generate
-rake deploy
-</code></pre>
-
-<p>這樣你就可以在你的網址看到你的blog啦</p>
-
-<pre><code>rake new_post["Title"]
-</code></pre>
-
-<p>發篇新文章吧!</p>
-
-<p>發現有大大寫的更好，大家也可以看看   <br/>
-<a href="http://wwssllabcd.github.com/blog/2012/08/01/how-to-install-octopress-on-window/">http://wwssllabcd.github.com/blog/2012/08/01/how-to-install-octopress-on-window/</a></p>
-
-<p>Markdown語法可以參考<br/>
-<a href="http://markdown.tw/">http://markdown.tw/</a></p>
-
-<p>Markdown的軟體我是用Markdown Pro<br/>
-<a href="http://www.markdownpro.com/">http://www.markdownpro.com/</a></p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lazyasa.github.com/blog/2014/07/16/puppet-module/" data-via="lazyasa" data-counturl="http://lazyasa.github.com/blog/2014/07/16/puppet-module/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/21/build-fire-dot-app/">Build Fire.app</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-21T14:37:00+08:00" pubdate data-updated="true">Mar 21<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="https://github.com/handlino/FireApp/raw/master/lib/images/icon/256.png" alt="Alt text" />   <br/>
-最近看到大家大推Fire.app, <br/>
-於是就嘗試自己編譯一個來玩玩看 <br/>
-步驟為下:</p>
-
-<pre><code>$ rvm install 1.9.2 // tell rvm to install ruby 
-
-$ rvm use 1.9.2 // tell rvm use ruby 1.9.2 ver. 
-
-$ rvm install jruby // install jruby 
-
-$ rvm use jruby //jruby change to default 
-
-$ jruby -S gem install rawr // get rawr gem for jruby 
-// clone latest compass source code from github 
-
-$ git clone git://github.com/handlino/FireApp.git
-
-$ cd Fireapp 
-
-$ bin/build-all.sh
-</code></pre>
-
-<p>另外，在lib/ruby/common下有兩個資料夾      <br/>
--   tka-rack-coffee   <br/>
--   tka-serve</p>
-
-<p>如果是空的，記得再下兩個指令更新他</p>
-
-<pre><code>git submodule init
-git submodule updata
-</code></pre>
-
-<p>然後編譯  <br/>
-完成就可以開始開心使用Fire.app啦!</p>
-
-<p>官方github  <br/>
-<a href="https://github.com/handlino/FireApp">https://github.com/handlino/FireApp</a></p>
-
-<p>懶得編譯也可以直接到官方網站購買囉   <br/>
-<a href="http://fireapp.handlino.com/">http://fireapp.handlino.com/</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+        <a class="basic-alignment left" href="/blog/2014/07/16/puppet-basic-setting/" title="Previous Post: Puppet 基本設定">&laquo; Puppet 基本設定</a>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/20/title/">hello，Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
+      
+    </p>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-20T15:38:00+08:00" pubdate data-updated="true">Mar 20<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>換到Octopress，感覺簡潔有力。</p>
 </div>
-  
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -735,6 +306,7 @@ git submodule updata
 
   
 </aside>
+
 
     </div>
   </div>

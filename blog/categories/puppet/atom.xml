@@ -4,7 +4,7 @@
   <title><![CDATA[Category: puppet | Asa Hsu]]></title>
   <link href="http://lazyasa.github.com/blog/categories/puppet/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2014-07-16T11:02:41+08:00</updated>
+  <updated>2014-07-16T11:06:53+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -12,6 +12,125 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Puppet module]]></title>
+    <link href="http://lazyasa.github.com/blog/2014/07/16/puppet-module/"/>
+    <updated>2014-07-16T11:06:00+08:00</updated>
+    <id>http://lazyasa.github.com/blog/2014/07/16/puppet-module</id>
+    <content type="html"><![CDATA[<h4>Module路徑位置</h4>
+
+<pre><code>/etc/puppet/modules
+</code></pre>
+
+<h4>Module架構</h4>
+
+<pre><code>/etc/puppet/modules/example
+└── example
+     ├── files  #存放文件目錄
+     │   └── etc
+     │       └── example
+     ├── manifests  #存放module pp設定文件目錄
+     │   └── init.pp
+     └── templates #存放module目錄
+</code></pre>
+
+<h1>Puppet SSH Module  example</h1>
+
+<hr />
+
+<h4>ssh/manifests/init.pp</h4>
+
+<p>確認每個class都執行過才執行最後一個ssh class</p>
+
+<pre><code>class ssh {     class { '::ssh::package': } -&gt;  class { '::ssh::config': }  -&gt;  class { '::ssh::service':}  -&gt;  Class['ssh']    }
+</code></pre>
+
+<h4>ssh/manifests/install.pp</h4>
+
+<p>package安裝檔    class ssh::install {      package { "openssh":      ensure => present,  } }</p>
+
+<h4>ssh/manifests/config.pp</h4>
+
+<p>file config檔案</p>
+
+<pre><code>class ssh::config {
+  file { "/etc/ssh/sshd_config":
+    ensure  =&gt; present,
+    owner   =&gt; 'root',
+    group   =&gt; 'root',
+    mode    =&gt; 0600,
+    source  =&gt; "puppet:///modules/ssh/sshd_config",
+    require =&gt; Class["ssh::package"],
+    notify  =&gt; Class["ssh::service"],
+  }
+}####ssh/manifests/service.pp
+class ssh::service {
+  service { "sshd":
+    ensure     =&gt; running,
+    hasstatus  =&gt; true,
+    hasrestart =&gt; true,
+    enable     =&gt; true,
+    require    =&gt; Class["ssh::config"],
+} }
+</code></pre>
+
+<blockquote><p>Class Tip<br/>
+You can nest classes by another layer, for example ssh::config::client, and our auto-importing magic will still work by placing this class in the ssh/manifests/config/client.pp file.</p></blockquote>
+
+<h1>Puppet run Module  example</h1>
+
+<hr />
+
+<pre><code># puppet agent test -vd -noop #vd debug mode #noop 測試執行
+</code></pre>
+
+<h1>Puppet Package</h1>
+
+<hr />
+
+<h5>Description</h5>
+
+<p>Manage packages. There is a basic dichotomy in package support right now: Some package types (e.g., yum and apt) can retrieve their own package files, while others (e.g., rpm and sun) cannot. For those package formats that cannot retrieve their own files, you can use the source parameter to point to the correct file.
+Puppet will automatically guess the packaging format that you are using based on the platform you are on, but you can override it using the provider parameter; each provider defines what it requires in order to function, and you must meet those requirements to use a given provider.
+Autorequires: If Puppet is managing the files specified as a package's adminfile, responsefile, or source, the package resource will autorequire those files.</p>
+
+<h5>Attributes</h5>
+
+<pre><code>package { 'resource title':
+name              =&gt; # (namevar) The package name.  This is the name that the...
+ensure            =&gt; # What state the package should be in. On...
+adminfile         =&gt; # A file containing package defaults for...
+allowcdrom        =&gt; # Tells apt to allow cdrom sources in the...
+category          =&gt; # A read-only parameter set by the...
+configfiles       =&gt; # Whether configfiles should be kept or replaced.  
+description       =&gt; # A read-only parameter set by the...
+flavor            =&gt; # OpenBSD supports 'flavors', which are further...
+install_options   =&gt; # An array of additional options to pass when...
+instance          =&gt; # A read-only parameter set by the...
+platform          =&gt; # A read-only parameter set by the...
+provider          =&gt; # The specific backend to use for this `package...
+responsefile      =&gt; # A file containing any necessary answers to...
+root              =&gt; # A read-only parameter set by the...
+source            =&gt; # Where to find the actual package.  This must be...
+status            =&gt; # A read-only parameter set by the...
+uninstall_options =&gt; # An array of additional options to pass when...
+vendor            =&gt; # A read-only parameter set by the...
+# ...plus any applicable metaparameters.
+}
+</code></pre>
+
+<h4>功能</h4>
+
+<ol>
+<li>管理軟體安裝，那些軟體解除安裝</li>
+<li>管理軟體是否更新</li>
+<li>要求系統設定yum repo等等</li>
+<li>有關不同操作系統支持類型請查閱http://docs.puppetlabs.com/references/stable/type.html</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Puppet 基本設定]]></title>
