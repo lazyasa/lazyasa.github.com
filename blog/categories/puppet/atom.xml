@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Puppet | Asa Hsu]]></title>
+  <title><![CDATA[Category: puppet | Asa Hsu]]></title>
   <link href="http://lazyasa.github.com/blog/categories/puppet/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2014-07-16T10:51:09+08:00</updated>
+  <updated>2014-07-16T10:56:57+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -14,34 +14,169 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Puppet Master&amp;Agent CA認證筆記]]></title>
-    <link href="http://lazyasa.github.com/blog/2014/07/09/puppet-master-and-agent-ca/"/>
-    <updated>2014-07-09T12:20:00+08:00</updated>
-    <id>http://lazyasa.github.com/blog/2014/07/09/puppet-master-and-agent-ca</id>
-    <content type="html"><![CDATA[<h4>Agent</h4>
+    <title type="html"><![CDATA[Puppet basic setting]]></title>
+    <link href="http://lazyasa.github.com/blog/2014/07/16/puppet-basic-setting/"/>
+    <updated>2014-07-16T10:56:00+08:00</updated>
+    <id>http://lazyasa.github.com/blog/2014/07/16/puppet-basic-setting</id>
+    <content type="html"><![CDATA[<h1>Puppet 基本設定</h1>
 
-<p>要求ca</p>
+<hr />
 
-<pre><code># puppet agent --server myserver.example.com --waitforcert 60 --test
+<h4>設定檔位置</h4>
+
+<pre><code>/etc/puppet/puppet.conf
 </code></pre>
 
-<h4>Master</h4>
+<h4>Master site.pp指定安裝檔案位置</h4>
 
-<p>查詢ca</p>
-
-<pre><code># puppet cert --list ---all
+<pre><code>/etc/puppet/manifests/site.pp
 </code></pre>
 
-<p>簽署ca</p>
+<h4>安裝Master</h4>
 
-<pre><code># puppet cert --sign certnmame
-or
-# puppet cert --sign --all (安全性不佳)
+<p>1.安裝套件</p>
+
+<pre><code># yum install puppet puppet-server facter -y #系統會自己安裝一些ruby相關套件
 </code></pre>
 
-<p>刪除ca</p>
+<p>2.設定puppet.conf</p>
 
-<pre><code>#puppet cert --clean myserver.example.com
+<pre><code># cp /etc/puppet/puppet.conf{,.bak} ＃備份config檔案
+# vim /etc/puppet/puppet.conf
+</code></pre>
+
+<p>3.建立site.pp</p>
+
+<pre><code># touch /etc/puppet/manifests/site.pp
+</code></pre>
+
+<p>4.啟動puppet</p>
+
+<pre><code># /etc/init.d/puppetmaster start
+# chkconfig puppetmaster on #設定開機啟動
+</code></pre>
+
+<h4>安裝Agent</h4>
+
+<p>1.安裝套件</p>
+
+<pre><code># yum install puppet facter     
+</code></pre>
+
+<p>2.設定puppet.conf</p>
+
+<pre><code># cp /etc/puppet/puppet.conf{,.bak} ＃備份config檔案
+# vim /etc/puppet/puppet.conf
+</code></pre>
+
+<p>在[agent]加上server</p>
+
+<pre><code>server = myserver.example.com
+</code></pre>
+
+<p>3.請求CA認證</p>
+
+<p><a href="">參考網址</a></p>
+
+<p>4.Server端認證</p>
+
+<blockquote><p>如果需要常駐在設定檔設定 <br/>
+[agent]  <br/>
+runinterval=3600 #3600秒</p></blockquote>
+
+<h1>site.pp 基本設定</h1>
+
+<hr />
+
+<p>基本安裝  <br/>
+<code>vim /etc/puppet/manifests/site.pp</code></p>
+
+<pre><code>node default
+ {      include defaultclassname     }
+</code></pre>
+
+<p>針對不同機器指定要安裝的module</p>
+
+<pre><code>node  'puppet.example.com'  {       # Puppet code wll go here   }
+    node  'web.example.com' {       # Puppet code will go here  }
+</code></pre>
+
+<p>或是一次設定大量機器  node    'web1.example.com',     'web2.example.com',     'web3.example.com'  {       # Puppet code goes here }
+正規化寫法，機器會自己去撈全部的機器例如 web1 到 web20</p>
+
+<pre><code>node /^web\d+\.example\.com$/   {       # Puppet code goes here }
+</code></pre>
+
+<p>也可以使用繼承</p>
+
+<pre><code>node basenode {        include  sudo
+   include  mailx   }
+node    'web.example.com'       inherits basenode {              include apache }
+</code></pre>
+
+<h1>Class寫法</h1>
+
+<hr />
+
+<h4>Class inheritance</h4>
+
+<pre><code>class ssh::params {
+  case $::osfamily {
+  'Debian': { $sshd_package  = 'ssh' }
+  'RedHat': { $sshd_package  = 'openssh-server' }
+  default:  {fail("Login class does not work on osfamily: ${::osfamily}")}
+  }
+}
+
+class ssh inherits ssh::params {
+  package { $::ssh::params::sshd_package:
+    ensure =&gt; installed,
+  }
+}
+
+include ssh 
+</code></pre>
+
+<h4>Class inheritance另一種寫法</h4>
+
+<pre><code>class ssh {
+  include ssh::params
+  package { $::ssh::params::sshd_package:
+    ensure =&gt; installed,
+  }
+}
+include ssh
+</code></pre>
+
+<h4>當有不同作業系統時，建議拆出一個class</h4>
+
+<pre><code>class ssh::params {
+    case $::osfamily{
+        Solaris: {
+            $ssh_package_name = 'openssh';
+        }
+        Debain: {
+            $ssh_package_name = 'openssh-server';
+        }
+        RedHat: {
+            $ssh_package_name = 'openssh-server';
+        }
+        default: {
+            fail("Moudle propuppet-ssh dose not support osfamily ${::osfamily}")
+        }
+    }
+}
+</code></pre>
+
+<p>in SSH Package class</p>
+
+<pre><code>class ssh::package {
+    include ssh::params
+    package { "ssh":
+        ensure =&gt; present,
+        name =&gt; $ssh::params::ssh_package_name,
+    }
+}   
 </code></pre>
 ]]></content>
   </entry>
