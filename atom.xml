@@ -4,7 +4,7 @@
   <title><![CDATA[Asa Hsu]]></title>
   <link href="http://lazyasa.github.com/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2014-07-16T10:59:11+08:00</updated>
+  <updated>2014-07-16T11:01:11+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -87,20 +87,35 @@ runinterval=3600 #3600秒</p></blockquote>
 <p>基本安裝  <br/>
 <code>vim /etc/puppet/manifests/site.pp</code></p>
 
-<pre><code>node default    
- {          include defaultclassname         }
+<pre><code>    node default    
+ {  
+    include defaultclassname    
+ }
 </code></pre>
 
 <p>針對不同機器指定要安裝的module</p>
 
-<pre><code>node  'puppet.example.com'      {           # Puppet code wll go here       }
-        node  'web.example.com'     {           # Puppet code will go here      }
+<pre><code>node  'puppet.example.com'  
+{   
+    # Puppet code wll go here   
+}
+
+
+node  'web.example.com' 
+{   
+    # Puppet code will go here  
+}
 </code></pre>
 
-<p>或是一次設定大量機器  node        &#8216;web1.example.com&#8217;,     &#8216;web2.example.com&#8217;,     &#8216;web3.example.co    m&#8217;      {           # Puppet code goes here     } <br/>
-正規化寫法，機器會自己去撈全部的機器例如 web1 到 web20</p>
+<p>或是一次設定大量機器  node</p>
 
-<pre><code>node /^web\d+\.example\.com$/   {       # Puppet code goes here }
+<pre><code>'web1.example.com', 
+'web2.example.com', 
+'web3.example.com'  
+{   
+    # Puppet code goes here 
+}   正規化寫法，機器會自己去撈全部的機器例如 web1 到 web20
+node /^web\d+\.example\.com$/   {       # Puppet code goes here }
 </code></pre>
 
 <p>也可以使用繼承</p>
