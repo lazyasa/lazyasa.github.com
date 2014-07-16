@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Octopress | Asa's lab]]></title>
+  <title><![CDATA[Category: Octopress | Asa Hsu]]></title>
   <link href="http://lazyasa.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2014-07-09T12:23:48+08:00</updated>
+  <updated>2014-07-16T10:51:09+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
