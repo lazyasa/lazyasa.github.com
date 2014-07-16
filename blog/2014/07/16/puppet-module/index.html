@@ -121,9 +121,7 @@
      └── templates #存放module目錄
 </code></pre>
 
-<h1>Puppet SSH Module  example</h1>
-
-<hr />
+<h2>Puppet SSH Module  example</h2>
 
 <h4>ssh/manifests/init.pp</h4>
 
@@ -164,16 +162,12 @@ class ssh::service {
 <blockquote><p>Class Tip<br/>
 You can nest classes by another layer, for example ssh::config::client, and our auto-importing magic will still work by placing this class in the ssh/manifests/config/client.pp file.</p></blockquote>
 
-<h1>Puppet run Module  example</h1>
-
-<hr />
+<h4>Puppet 測試不執行指令，只會跑完流程不會實際執行</h4>
 
 <pre><code># puppet agent test -vd -noop #vd debug mode #noop 測試執行
 </code></pre>
 
-<h1>Puppet Package</h1>
-
-<hr />
+<h2>Puppet Package</h2>
 
 <h5>Description</h5>
 
