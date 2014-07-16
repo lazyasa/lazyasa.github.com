@@ -4,7 +4,7 @@
   <title><![CDATA[Asa Hsu]]></title>
   <link href="http://lazyasa.github.com/atom.xml" rel="self"/>
   <link href="http://lazyasa.github.com/"/>
-  <updated>2014-07-16T11:09:00+08:00</updated>
+  <updated>2014-07-16T11:11:18+08:00</updated>
   <id>http://lazyasa.github.com/</id>
   <author>
     <name><![CDATA[Asa]]></name>
@@ -41,12 +41,24 @@
 
 <p>確認每個class都執行過才執行最後一個ssh class</p>
 
-<pre><code>class ssh {     class { '::ssh::package': } -&gt;  class { '::ssh::config': }  -&gt;  class { '::ssh::service':}  -&gt;  Class['ssh']    }
+<pre><code>class ssh { 
+class { '::ssh::package': } -&gt;  
+class { '::ssh::config': }  -&gt;  
+class { '::ssh::service':}  -&gt;  
+Class['ssh']    
+}
 </code></pre>
 
 <h4>ssh/manifests/install.pp</h4>
 
-<p>package安裝檔    class ssh::install {      package { &#8220;openssh&#8221;:      ensure => present,  } }</p>
+<p>package安裝檔</p>
+
+<pre><code>class ssh::install {    
+  package { "openssh":  
+    ensure =&gt; present,  
+  }  
+}   
+</code></pre>
 
 <h4>ssh/manifests/config.pp</h4>
 

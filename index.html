@@ -130,12 +130,24 @@
 
 <p>確認每個class都執行過才執行最後一個ssh class</p>
 
-<pre><code>class ssh {     class { '::ssh::package': } -&gt;  class { '::ssh::config': }  -&gt;  class { '::ssh::service':}  -&gt;  Class['ssh']    }
+<pre><code>class ssh { 
+class { '::ssh::package': } -&gt;  
+class { '::ssh::config': }  -&gt;  
+class { '::ssh::service':}  -&gt;  
+Class['ssh']    
+}
 </code></pre>
 
 <h4>ssh/manifests/install.pp</h4>
 
-<p>package安裝檔    class ssh::install {      package { &#8220;openssh&#8221;:      ensure => present,  } }</p>
+<p>package安裝檔</p>
+
+<pre><code>class ssh::install {    
+  package { "openssh":  
+    ensure =&gt; present,  
+  }  
+}   
+</code></pre>
 
 <h4>ssh/manifests/config.pp</h4>
 
